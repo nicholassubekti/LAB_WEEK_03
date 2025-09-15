@@ -20,26 +20,28 @@ class ListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    super.onViewCreated(view, savedInstanceState)
 
-        val coffeeList = listOf<View>(
-            view.findViewById(R.id.affogato),
-            view.findViewById(R.id.americano),
-            view.findViewById(R.id.latte)
-        )
+    val coffeeList = listOf<View>(
+        view.findViewById(R.id.affogato),
+        view.findViewById(R.id.americano),
+        view.findViewById(R.id.latte),
+        view.findViewById(R.id.cappuccino),
+        view.findViewById(R.id.mocha)
+    )
 
-        coffeeList.forEach { coffee ->
-            val fragmentBundle = Bundle()
-            fragmentBundle.putInt(COFFEE_ID, coffee.id)
+    coffeeList.forEach { coffee ->
+        val fragmentBundle = Bundle()
+        fragmentBundle.putInt(COFFEE_ID, coffee.id)
 
-            coffee.setOnClickListener(
-                Navigation.createNavigateOnClickListener(
-                    R.id.coffee_id_action,
-                    fragmentBundle
-                )
+        coffee.setOnClickListener(
+            Navigation.createNavigateOnClickListener(
+                R.id.coffee_id_action,
+                fragmentBundle
             )
-        }
+        )
     }
+}
 
     companion object {
         const val COFFEE_ID = "COFFEE_ID"
