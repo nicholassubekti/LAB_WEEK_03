@@ -8,9 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 class ListFragment : Fragment(), View.OnClickListener {
-    private var param1: String? = null
-    private var param2: String? = null
-
     private lateinit var coffeeListener: CoffeeListener
 
     override fun onAttach(context: Context) {
@@ -35,11 +32,13 @@ class ListFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val coffeeList = listOf<View>(
             view.findViewById(R.id.affogato),
             view.findViewById(R.id.americano),
             view.findViewById(R.id.latte)
         )
+
         coffeeList.forEach {
             it.setOnClickListener(this)
         }
@@ -47,15 +46,5 @@ class ListFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         v?.let { coffee -> coffeeListener.onSelected(coffee.id) }
-    }
-
-    companion object {
-        fun newInstance(param1: String, param2: String) =
-            ListFragment().apply {
-                arguments = Bundle().apply {
-                    putString("param1", param1)
-                    putString("param2", param2)
-                }
-            }
     }
 }
